@@ -14,7 +14,14 @@ import {
   Dimensions
  } from 'react-native';
 
-export default SplashScreen =()=> {
+export default SplashScreen =({navigation})=> {
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      navigation.replace('LoginScreen')
+    }, 3000)
+  }, [navigation]);
+
     return (
       <View style={style.container}>
         <View style={style.logoContainer}>
