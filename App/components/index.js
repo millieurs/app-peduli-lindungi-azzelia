@@ -1,5 +1,17 @@
-import { PrimaryButton } from './button/ButtonComponet'
+import { 
+    PrimaryButton,
+    SecondaryButton,
+    InfoButton
+} from './button/ButtonComponet'
+import { 
+    MainCard,
+    BoxCard
+ } from './CardComponent'
 
 export{
-    PrimaryButton
+    PrimaryButton,
+    MainCard,
+    BoxCard,
+    SecondaryButton,
+    InfoButton
 }

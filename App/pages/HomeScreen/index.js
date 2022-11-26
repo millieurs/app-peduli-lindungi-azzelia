@@ -11,6 +11,22 @@ import{
     ICAccount
 } from '../../assets/images'
 
+import{
+    MainCard,
+    BoxCard
+} from '../../components'
+
+import{
+    ICImunization,
+    ICCovidTest,
+    ICEhac,
+    ICTravel,
+    ICTelemedicine,
+    ICHealthFacility,
+    ICCovitStatistic,
+    ICHospital
+} from '../../assets/images'
+
 export default HomeScreen =()=> {
     return (
         <SafeAreaView  style={style.mainContainer}>
@@ -30,6 +46,63 @@ export default HomeScreen =()=> {
                     <Image source={ICNotification}/>
                 </View>
             </View>
+            <View>
+                <MainCard></MainCard>
+            </View>
+            <View>
+                <View style={{marginTop:15, flexDirection:'row', justifyContent:'space-between'}}>
+                    <BoxCard 
+                        title="Vaccine and Immunization"
+                        source={ICImunization}
+                        style={{backgroundColor:'#FFBF43'}}
+                    />
+
+                    <BoxCard 
+                        title="Covid-19 Test Results"
+                        source={ICCovidTest}
+                        style={{backgroundColor:'#D34539'}}
+                    />
+
+                    <BoxCard 
+                        title="EHC"
+                        source={ICEhac}
+                        style={{backgroundColor:'#1E9E61'}}
+                    />
+                    
+                    <BoxCard 
+                        title="Travel Regulations"
+                        source={ICTravel}
+                        style={{backgroundColor:'#1E9E61'}}
+                    />
+                </View>
+
+                <View style={{marginTop:15, flexDirection:'row', justifyContent:'space-between'}}>
+                    <BoxCard 
+                        title="Telemedicine"
+                        source={ICTelemedicine}
+                        style={{backgroundColor:'#FFC557'}}
+                    />
+
+                    <BoxCard 
+                        title="Healthcare Facility"
+                        source={ICHealthFacility}
+                        style={{backgroundColor:'#1E9E61'}}
+                    />
+
+                    <BoxCard 
+                        title="Covid-19 Statistic"
+                        source={ICCovitStatistic}
+                        style={{backgroundColor:'#D7574C'}}
+                    />
+                    
+                    <BoxCard 
+                        title="Find Hospital Bed"
+                        source={ICHospital}
+                        style={{backgroundColor:'#FFC557'}}
+                    />
+                </View>
+            </View>
+            <Text style={style.headerInfo}>Health Information</Text>
         </SafeAreaView>
     )
 }
@@ -48,5 +121,11 @@ const style = StyleSheet.create({
         fontWeight:'bold',
         marginLeft:5,
         textDecorationLine:'underline'
+    },
+    headerInfo:{
+        marginTop:25,
+        marginBottom:10,
+        fontWeight:'bold',
+        fontSize:18
     }
 })
