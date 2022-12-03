@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux'
 import { 
     View,
     Text,
@@ -28,6 +29,7 @@ import{
 } from '../../assets/images'
 
 export default HomeScreen =()=> {
+    const fullName = useSelector(state => state.user.fullName)
     return (
         <SafeAreaView  style={style.mainContainer}>
             <View style={style.header}>
@@ -39,7 +41,7 @@ export default HomeScreen =()=> {
                         Hi
                     </Text>
                     <Text style={style.haderText}>
-                        Sata Lesmana
+                        {fullName}
                     </Text>
                 </View>
                 <View style={{flex:1}}>

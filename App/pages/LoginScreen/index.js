@@ -15,14 +15,23 @@ import {
   Text,
   TextInput,
   StyleSheet
- } from 'react-native';
+} from 'react-native';
+import { useDispatch } from 'react-redux'
+import { setEmail, setFullName } from '../../store/reducers/userReducer'
 
 export default LoginScreen =({navigation})=> {
   const [email, onSetEmail] = React.useState(null);
   const [password, onSetPassword] = React.useState(null);
-  
+  const dispatch = useDispatch()
+
   const onSubmitLogin=()=>{
-    navigation.replace('HomeScreen')
+    if(email=='admin@mail.com' && password=='admin'){
+      navigation.replace('HomeScreen')
+      dispatch(setEmail(email))
+      dispatch(setFullName('Administrator'))
+    }else{
+      console.log('username & password tidak sesuai')
+    }
   }
 
 
@@ -50,6 +59,11 @@ export default LoginScreen =({navigation})=> {
           <PrimaryButton
             title="Login"
             onPress={onSubmitLogin}/>
+
+          <PrimaryButton
+            title="Register"
+            style={{margin:10}}
+            onPress={()=>navigation.navigate('RegisterScreen')}/>
         </View>
 
         <Text style={style.footherText}>Bekerjasama dengan</Text>
@@ -72,7 +86,8 @@ const style = StyleSheet.create({
   },  
   logoTopStyle:{
     width:150,
-    height:150
+    height:150,
+    
   },
   logoContainer:{
     alignItems:'center'

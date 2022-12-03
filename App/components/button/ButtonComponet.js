@@ -16,7 +16,7 @@ export const PrimaryButton=(props)=>{
     return(
         <TouchableOpacity 
             onPress={props.onPress} 
-            style={style.primaryBtnStyle}>
+            style={[style.primaryBtnStyle, props.style]}>
             <Text style={style.texBtn}>{props.title}</Text>
         </TouchableOpacity>
     )
@@ -26,7 +26,7 @@ export const SecondaryButton=(props)=>{
     return(
         <TouchableOpacity 
             onPress={props.onPress} 
-            style={style.secondaryBtnStyle}>
+            style={[style.secondaryBtnStyle,props.style]}>
                 <Image source={ICExpandMore}/>
                 <Text style={style.texBtnSecondary}>{props.title}</Text>
         </TouchableOpacity>
@@ -37,7 +37,7 @@ export const InfoButton=(props)=>{
     return(
         <TouchableOpacity 
             onPress={props.onPress} 
-            style={style.infoBtnStyle}>
+            style={[style.infoBtnStyle, props.style]}>
                 <Image source={ICScanQr}/>
                 <Text style={style.texBtnInfo}>{props.title}</Text>
         </TouchableOpacity>
