@@ -8,7 +8,9 @@ import {
   LoginScreen,
   HomeScreen,
   RegisterScreen,
-  EhcScreen
+  EhcScreen,
+  EhcFormScreen,
+  EhcListScreen
 } from './App/pages'
 
 const Stack = createNativeStackNavigator();
@@ -23,6 +25,8 @@ const  App = ()=> {
           <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false}}/>
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{headerShown: false}}/>
           <Stack.Screen name="EhcScreen" component={EhcScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="EhcFormScreen" component={EhcFormScreen} options={{title:'e-HAC Form'}}/>
+          <Stack.Screen name="EhcListScreen" component={EhcListScreen} options={{title:'My e-HAC'}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

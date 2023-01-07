@@ -3,11 +3,15 @@ import LoginScreen from './LoginScreen'
 import HomeScreen from './HomeScreen'
 import RegisterScreen from './Register'
 import EhcScreen from './EhcScreen'
+import EhcFormScreen from './EhcScreen/EhcFormScreen'
+import EhcListScreen from './EhcScreen/EhcListScreen.js'
 
 export{
     SplashScreen,
     LoginScreen,
     HomeScreen,
     RegisterScreen,
-    EhcScreen
+    EhcScreen,
+    EhcFormScreen,
+    EhcListScreen
 }

@@ -39,7 +39,7 @@ export default EhcScreen =({navigation})=> {
                 <BoxList 
                     title="Create e-HAC"
                     subtitle="Electronic Health Alert Card"
-                    onPress={()=>alert('tes')}
+                    onPress={()=>navigation.navigate('EhcFormScreen')}
                     source={ICCreateEhac}
                     style={{backgroundColor:'#1E9E61'}}
                     cardStyle={{
@@ -52,7 +52,7 @@ export default EhcScreen =({navigation})=> {
                     cardStyle={{paddingTop:5}}
                     title="My e-HAC"
                     subtitle="Check your history eHAC here"
-                    onPress={()=>alert('tes')}
+                    onPress={()=>navigation.navigate('EhcListScreen')}
                     source={ICMyEhac}
                     style={{backgroundColor:'#F49A5C'}}
                 />
