@@ -18,6 +18,10 @@ import ICHealthFacility from './images/ic_healthcare_facility.jpg'
 import ICCovitStatistic from './images/ic_statistic_covid.jpg'
 import ICHospital from './images/ic_find_hospital.jpg'
 import Loading from './images/loading.gif'
+import BGEhac from './images/bg_ehac.jpg'
+import ICCreateEhac from './images/ic_create_ehc.jpg'
+import ICMyEhac from './images/ic_my_ehc.jpg'
+import ICBack from './images/arrow_back_24px.png'
 
 export{
     LogoText,
@@ -39,5 +43,9 @@ export{
     ICHealthFacility,
     ICCovitStatistic,
     ICHospital,
-    Loading
+    Loading,
+    BGEhac,
+    ICCreateEhac,
+    ICMyEhac,
+    ICBack
 }

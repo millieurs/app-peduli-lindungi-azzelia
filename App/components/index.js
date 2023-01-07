@@ -5,7 +5,8 @@ import {
 } from './button/ButtonComponet'
 import { 
     MainCard,
-    BoxCard
+    BoxCard,
+    BoxList
  } from './CardComponent'
 import {
     LoadingUi
@@ -17,5 +18,6 @@ export{
     BoxCard,
     SecondaryButton,
     InfoButton,
-    LoadingUi
+    LoadingUi,
+    BoxList
 }

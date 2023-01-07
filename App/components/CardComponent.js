@@ -44,7 +44,7 @@ export const MainCard=(props)=>{
 export const BoxCard=(props)=>{
     return (
         <View style={{width:90, alignContent:'center'}}>
-            <TouchableOpacity style={[style.imgButton, props.style]}>
+            <TouchableOpacity onPress={props.onPress} style={[style.imgButton, props.style]}>
                 <Image 
                     source={props.source} 
                     style={style.imgBtnStyle}
@@ -52,6 +52,28 @@ export const BoxCard=(props)=>{
             </TouchableOpacity>
             <Text style={{textAlign:'center'}}>{props.title}</Text>
         </View>
+    )
+}
+
+export const BoxList=(props)=>{
+    return (
+        <TouchableOpacity onPress={props.onPress} style={[{ 
+            alignContent:'center', 
+            flexDirection:'row',
+            margin:2,
+            
+            },props.cardStyle]}>
+            <View  style={[style.imgButtonList, props.style]}>
+                <Image 
+                    source={props.source} 
+                    style={style.imgBtnStyleList}
+                />
+            </View>
+            <View style={{flexDirection:'column', marginLeft:12}}>
+                <Text style={{ fontSize:16, fontWeight:'bold'}}>{props.title}</Text>
+                <Text >{props.subtitle}</Text>
+            </View>
+        </TouchableOpacity>
     )
 }
 
@@ -103,9 +125,23 @@ const style = StyleSheet.create({
         alignItems:'center'
 
     },
+    imgButtonList:{
+        width:60,
+        height:60,
+        //borderWidth:1,
+        borderRadius:3,
+        justifyContent:'center',
+        alignItems:'center'
+    },
     imgBtnStyle:{
         width:70,
         height:70,
+        aspectRatio:1,
+        borderRadius:15,
+    },
+    imgBtnStyleList:{
+        width:50,
+        height:50,
         aspectRatio:1,
         borderRadius:15,
     }

@@ -28,7 +28,7 @@ import{
     ICHospital
 } from '../../assets/images'
 
-export default HomeScreen =()=> {
+export default HomeScreen =({navigation})=> {
     const fullName = useSelector(state => state.user.fullName)
     return (
         <SafeAreaView  style={style.mainContainer}>
@@ -67,6 +67,7 @@ export default HomeScreen =()=> {
 
                     <BoxCard 
                         title="EHC"
+                        onPress={()=>navigation.navigate('EhcScreen')}
                         source={ICEhac}
                         style={{backgroundColor:'#1E9E61'}}
                     />
