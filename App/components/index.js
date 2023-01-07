@@ -7,11 +7,15 @@ import {
     MainCard,
     BoxCard
  } from './CardComponent'
+import {
+    LoadingUi
+} from './ui'
 
 export{
     PrimaryButton,
     MainCard,
     BoxCard,
     SecondaryButton,
-    InfoButton
+    InfoButton,
+    LoadingUi
 }

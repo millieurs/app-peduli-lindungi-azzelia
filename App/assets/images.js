@@ -17,6 +17,7 @@ import ICTelemedicine from './images/ic_telemedicine.jpg'
 import ICHealthFacility from './images/ic_healthcare_facility.jpg'
 import ICCovitStatistic from './images/ic_statistic_covid.jpg'
 import ICHospital from './images/ic_find_hospital.jpg'
+import Loading from './images/loading.gif'
 
 export{
     LogoText,
@@ -37,5 +38,6 @@ export{
     ICTelemedicine,
     ICHealthFacility,
     ICCovitStatistic,
-    ICHospital
+    ICHospital,
+    Loading
 }
