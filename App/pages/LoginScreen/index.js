@@ -7,7 +7,8 @@ import {
   LogoKpc
  } from '../../assets/images'
 import {
-  PrimaryButton
+  PrimaryButton,
+  LoadingUi
 } from '../../components'
 import { 
   View,
@@ -17,20 +18,64 @@ import {
   StyleSheet
 } from 'react-native';
 import { useDispatch } from 'react-redux'
-import { setEmail, setFullName } from '../../store/reducers/userReducer'
+import axios from 'axios';
+import { useSelector } from 'react-redux'
+import { 
+  setEmail, 
+  setFullName,
+  setNik,
+  setTglLahir,
+  setPhoneNumber
+ } from '../../store/reducers/userReducer'
 
 export default LoginScreen =({navigation})=> {
   const [email, onSetEmail] = React.useState(null);
   const [password, onSetPassword] = React.useState(null);
+  const [errorMsg, onSetErrorMsg] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(false)
+  const BASE_URL = useSelector(state => state.config.baseUrl)
+  const API_KEY = useSelector(state => state.config.apiKey)
+
   const dispatch = useDispatch()
 
-  const onSubmitLogin=()=>{
-    if(email=='admin@mail.com' && password=='admin'){
-      navigation.replace('HomeScreen')
-      dispatch(setEmail(email))
-      dispatch(setFullName('Administrator'))
+  const onSubmitLogin= async ()=>{
+    setIsLoading(true)
+    onSetErrorMsg('')
+    if(email !='' && email != null && password !='' && password != null){
+      try{
+        const res = await axios.post(`${BASE_URL}/action/findOne`,{
+          "dataSource": "Cluster0",
+          "database": "app_taskita",
+          "collection": "peduli_member",
+          "filter": {
+            email:email,
+            password:password
+          }
+        }, {
+          headers: {"api-key": API_KEY}
+        });
+        
+        setIsLoading(false)
+        const document = res.data.document;
+        if(document != null){
+          dispatch(setEmail(email))
+          dispatch(setFullName(document.nama))
+          dispatch(setNik(document.nik))
+          dispatch(setTglLahir(document.tgl_lahir))
+          dispatch(setPhoneNumber(document.phone_number))
+
+          navigation.replace('HomeScreen')
+        }else{
+          onSetErrorMsg("Username & password tidak sesuai")
+        }
+
+      }catch(err){
+        onSetErrorMsg(err.message)
+      }
+      
     }else{
-      console.log('username & password tidak sesuai')
+      onSetErrorMsg('username & password hasus di isi')
+      
     }
   }
 
@@ -64,6 +109,13 @@ export default LoginScreen =({navigation})=> {
             title="Register"
             style={{margin:10}}
             onPress={()=>navigation.navigate('RegisterScreen')}/>
+        
+        {(errorMsg !='') && (
+            <Text 
+              style={{color:'red', margin:10, textAlign:'center'}}>
+                {errorMsg}
+            </Text>
+          )}
         </View>
 
         <Text style={style.footherText}>Bekerjasama dengan</Text>
@@ -73,6 +125,7 @@ export default LoginScreen =({navigation})=> {
           <Image source={LogoKemkes} style={style.logoImage}/>
           <Image source={LogoBumn} style={style.logoImage}/>
         </View>
+        <LoadingUi loading={isLoading}/>
       </View>
     );
 }
