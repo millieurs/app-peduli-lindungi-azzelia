@@ -17,9 +17,18 @@ import{
     ICMyEhac,
     ICBack
 } from '../../assets/images'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { 
+    setId
+} from '../../store/reducers/ehacReducer'
 
 export default EhcScreen =({navigation})=> {
+    const dispatch = useDispatch()
+    const onAddNew =()=>{
+        dispatch(setId(''))
+        navigation.navigate('EhcFormScreen')
+    }
+
     return (
         <SafeAreaView style={style.container}>
             <ImageBackground source={BGEhac} style={style.imgContainer}>
@@ -39,7 +48,7 @@ export default EhcScreen =({navigation})=> {
                 <BoxList 
                     title="Create e-HAC"
                     subtitle="Electronic Health Alert Card"
-                    onPress={()=>navigation.navigate('EhcFormScreen')}
+                    onPress={()=>onAddNew}
                     source={ICCreateEhac}
                     style={{backgroundColor:'#1E9E61'}}
                     cardStyle={{
