@@ -48,7 +48,7 @@ export default EhcScreen =({navigation})=> {
                 <BoxList 
                     title="Create e-HAC"
                     subtitle="Electronic Health Alert Card"
-                    onPress={()=>onAddNew}
+                    onPress={()=>onAddNew()}
                     source={ICCreateEhac}
                     style={{backgroundColor:'#1E9E61'}}
                     cardStyle={{
