@@ -10,7 +10,9 @@ import {
   RegisterScreen,
   EhcScreen,
   EhcFormScreen,
-  EhcListScreen
+  EhcListScreen,
+  KotaTujuanScreen,
+  TransportasiScreen
 } from './App/pages'
 
 const Stack = createNativeStackNavigator();
@@ -27,6 +29,8 @@ const  App = ()=> {
           <Stack.Screen name="EhcScreen" component={EhcScreen} options={{headerShown: false}}/>
           <Stack.Screen name="EhcFormScreen" component={EhcFormScreen} options={{title:'e-HAC Form'}}/>
           <Stack.Screen name="EhcListScreen" component={EhcListScreen} options={{title:'My e-HAC'}}/>
+          <Stack.Screen name="KotaTujuanScreen" component={KotaTujuanScreen} options={{title:'Kota Tujuan'}}/>
+          <Stack.Screen name="TransportasiScreen" component={TransportasiScreen} options={{title:'Transportations'}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

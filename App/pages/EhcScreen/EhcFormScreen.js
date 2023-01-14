@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux'
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { useDispatch } from 'react-redux'
+import axios from 'axios';
 import { 
     StyleSheet, 
     View, 
@@ -12,10 +15,20 @@ import {
 import {
     PrimaryButton,
     LoadingUi
-  } from '../../components'
+} from '../../components'
+
+import { 
+    setTglKeberangkatan
+} from '../../store/reducers/ehacReducer'
 
 export default EhcFormScreen =({navigation})=> {
+    const dispatch = useDispatch()
+    const BASE_URL = useSelector(state => state.config.baseUrl)
+    const API_KEY = useSelector(state => state.config.apiKey)
     const user = useSelector(state => state.user)
+    const ehacForm = useSelector(state => state.ehac.form)
+    const [tmpDate, setTmpDate] = React.useState(new Date());
+    const [showDate, setShowDate] = React.useState(false);
     const personalData = [
         {label:"NIK", value:user.nik},
         {label:"Nama", value: user.fullName},
@@ -24,17 +37,48 @@ export default EhcFormScreen =({navigation})=> {
         {label:"Phone Number", value: user.phoneNumber}
     ]
 
-    const onSaveData=()=>{
-        alert('save data')
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || tmpDate;
+        const tgl = currentDate.getDate() // DD
+        const bulan = currentDate.getMonth()+1 // MM
+        const tahun = currentDate.getFullYear() // YYYY
+        
+        setShowDate(false);
+        setTmpDate(currentDate);
+        dispatch(setTglKeberangkatan(tgl+"/"+bulan+"/"+tahun));
+      };
+
+    const onSaveData=async ()=>{
+        try{
+        const res = await axios.post(`${BASE_URL}/action/insertOne`,{
+            "dataSource": "Cluster0",
+            "database": "app_taskita",
+            "collection": "peduli_ehac",
+            "document": {
+              nik:user.nik,
+              nama:user.fullName,
+              tgl_lahir:user.tglLahir,
+              phone_number:user.phoneNumber,
+              email:user.email,
+              sarana_trans:ehacForm.sarana,
+              kotaTujuan:ehacForm.kotaTujuan,
+              tglKeberangkatan:ehacForm.tglKeberangkatan,
+            }
+          },{ headers: {"api-key": API_KEY}});
+
+          navigation.navigate('EhcScreen')
+        }catch(err){
+            console.log(err)
+        }
     }
 
     return (
         <SafeAreaView style={style.container}>
             <Text style={style.textGroupHeader}>Personal Detail</Text>
             
-            {personalData.map((prop, key) => {
+            {personalData.map((prop) => {
                 return(
-                    <View>
+                    <View key={prop.label}>
                         <View style={ style.formHeader}>
                             <View style={{
                                 flex:1,
@@ -59,8 +103,8 @@ export default EhcFormScreen =({navigation})=> {
                     }}>
                     <Text style={style.inputTextLabel}>Transportasi : </Text>
                 </View>
-                <TouchableOpacity onPress={()=>alert('tes')} style={style.inputStyle} >
-                    <Text>sdf</Text>
+                <TouchableOpacity onPress={()=>navigation.navigate('TransportasiScreen')} style={style.inputStyle} >
+                    <Text>{ehacForm.sarana.label ? ehacForm.sarana.label :'-'}</Text>
                 </TouchableOpacity>
             </View>
 
@@ -71,8 +115,8 @@ export default EhcFormScreen =({navigation})=> {
                     }}>
                     <Text style={style.inputTextLabel}>Kota Tujuan : </Text>
                 </View>
-                <TouchableOpacity onPress={()=>alert('tes')} style={style.inputStyle} >
-                    <Text>sdf</Text>
+                <TouchableOpacity onPress={()=>navigation.navigate('KotaTujuanScreen')} style={style.inputStyle} >
+                    <Text>{ehacForm.kotaTujuan.label ? ehacForm.kotaTujuan.label:'-'}</Text>
                 </TouchableOpacity>
             </View>
 
@@ -83,9 +127,17 @@ export default EhcFormScreen =({navigation})=> {
                     }}>
                     <Text style={style.inputTextLabel}>Keberangkatan : </Text>
                 </View>
-                <TouchableOpacity onPress={()=>alert('tes')} style={style.inputStyle} >
-                    <Text>sdf</Text>
+                <TouchableOpacity onPress={()=>setShowDate(true)} style={style.inputStyle} >
+                    <Text>{ehacForm.tglKeberangkatan !=''? ehacForm.tglKeberangkatan : 'mm/dd/yyyy'}</Text>
                 </TouchableOpacity>
+                {showDate && (
+                      <DateTimePicker
+                      testID="dateTimePicker"
+                      value={tmpDate}
+                      mode={'date'}
+                      is24Hour={true}
+                      onChange={onChange}/>
+                  )}
             </View>
 
             <View style={ style.formHeader}>

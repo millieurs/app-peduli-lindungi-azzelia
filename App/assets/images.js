@@ -22,7 +22,7 @@ import BGEhac from './images/bg_ehac.jpg'
 import ICCreateEhac from './images/ic_create_ehc.jpg'
 import ICMyEhac from './images/ic_my_ehc.jpg'
 import ICBack from './images/arrow_back_24px.png'
-
+import ICArrowRight from './images/expand_more_right.png'
 export{
     LogoText,
     LogoKemkes,
@@ -47,5 +47,6 @@ export{
     BGEhac,
     ICCreateEhac,
     ICMyEhac,
-    ICBack
+    ICBack,
+    ICArrowRight
 }

@@ -5,6 +5,8 @@ import RegisterScreen from './Register'
 import EhcScreen from './EhcScreen'
 import EhcFormScreen from './EhcScreen/EhcFormScreen'
 import EhcListScreen from './EhcScreen/EhcListScreen.js'
+import KotaTujuanScreen from './EhcScreen/KotaTujuanScreen'
+import TransportasiScreen  from './EhcScreen/TransportasiScreen'
 
 export{
     SplashScreen,
@@ -13,5 +15,7 @@ export{
     RegisterScreen,
     EhcScreen,
     EhcFormScreen,
-    EhcListScreen
+    EhcListScreen,
+    KotaTujuanScreen,
+    TransportasiScreen
 }
