@@ -24,6 +24,9 @@ export const ehacSlice = createSlice({
         },
         setTglKeberangkatan:(state, action) =>{
             state.form.tglKeberangkatan =  action.payload
+        },
+        addMultipeData:(state, action) =>{
+            state.listdata =  action.payload
         }
     }
 })
@@ -31,6 +34,7 @@ export const ehacSlice = createSlice({
 export const { 
     setSarana,
     setKotaTujuan,
-    setTglKeberangkatan
+    setTglKeberangkatan,
+    addMultipeData
  } = ehacSlice.actions
 export default ehacSlice.reducer
