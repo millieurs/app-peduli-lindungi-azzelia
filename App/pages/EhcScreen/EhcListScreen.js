@@ -21,6 +21,7 @@ import {
     setSarana,
     setKotaTujuan,
     setTglKeberangkatan,
+    setId
 } from '../../store/reducers/ehacReducer'
 
 export default EhcListScreen =({navigation})=> {
@@ -47,6 +48,7 @@ export default EhcListScreen =({navigation})=> {
     }
 
     const onEdit=(data)=>{
+        dispatch(setId(data._id))
         dispatch(setSarana(data.sarana_trans))
         dispatch(setKotaTujuan(data.kotaTujuan))
         dispatch(setTglKeberangkatan(data.tglKeberangkatan))

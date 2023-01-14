@@ -50,23 +50,44 @@ export default EhcFormScreen =({navigation})=> {
 
     const onSaveData=async ()=>{
         try{
-        const res = await axios.post(`${BASE_URL}/action/insertOne`,{
-            "dataSource": "Cluster0",
-            "database": "app_taskita",
-            "collection": "peduli_ehac",
-            "document": {
-              nik:user.nik,
-              nama:user.fullName,
-              tgl_lahir:user.tglLahir,
-              phone_number:user.phoneNumber,
-              email:user.email,
-              sarana_trans:ehacForm.sarana,
-              kotaTujuan:ehacForm.kotaTujuan,
-              tglKeberangkatan:ehacForm.tglKeberangkatan,
+            const action = ehacForm.id !='' ? 'updateOne':'insertOne';
+            let dataSender = {
+                "document": {
+                    nik:user.nik,
+                    nama:user.fullName,
+                    tgl_lahir:user.tglLahir,
+                    phone_number:user.phoneNumber,
+                    email:user.email,
+                    sarana_trans:ehacForm.sarana,
+                    kotaTujuan:ehacForm.kotaTujuan,
+                    tglKeberangkatan:ehacForm.tglKeberangkatan,
+                }
             }
-          },{ headers: {"api-key": API_KEY}});
+            if(ehacForm.id !=''){
+                dataSender={
+                    "filter": { "nik": user.nik },
+                    "update": { "$set": { 
+                        nik:user.nik,
+                        nama:user.fullName,
+                        tgl_lahir:user.tglLahir,
+                        phone_number:user.phoneNumber,
+                        email:user.email,
+                        sarana_trans:ehacForm.sarana,
+                        kotaTujuan:ehacForm.kotaTujuan,
+                        tglKeberangkatan:ehacForm.tglKeberangkatan,
+                    } },
+                }
+            }
 
-          navigation.navigate('EhcScreen')
+            console.log('dataSender',dataSender)
+            const res = await axios.post(`${BASE_URL}/action/${action}`,{
+                "dataSource": "Cluster0",
+                "database": "app_taskita",
+                "collection": "peduli_ehac",
+                ...dataSender
+            },{ headers: {"api-key": API_KEY}});
+
+            navigation.navigate('EhcScreen')
         }catch(err){
             console.log(err)
         }

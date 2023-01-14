@@ -4,6 +4,7 @@ export const ehacSlice = createSlice({
     name: 'ehac',
     initialState: {
         form:{
+            id:'',
             nik:'',
             fullName:'',
             email:'',
@@ -16,6 +17,9 @@ export const ehacSlice = createSlice({
         listdata:[]
     },
     reducers: {
+        setId:(state, action)  => {
+            state.form.id = action.payload
+        },
         setSarana: (state, action)  => {
             state.form.sarana = action.payload
         },
@@ -35,6 +39,7 @@ export const {
     setSarana,
     setKotaTujuan,
     setTglKeberangkatan,
-    addMultipeData
+    addMultipeData,
+    setId
  } = ehacSlice.actions
 export default ehacSlice.reducer
