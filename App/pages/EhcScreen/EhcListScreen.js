@@ -55,8 +55,20 @@ export default EhcListScreen =({navigation})=> {
         navigation.navigate('EhcFormScreen')
     }
 
-    const onDelete=(nik)=>{
-        console.log(nik)
+    const onDelete=async(nik)=>{
+        try{
+            const res = await axios.post(`${BASE_URL}/action/deleteOne`,{
+                    dataSource: "Cluster0",
+                    database: "app_taskita",
+                    collection: "peduli_ehac",
+                    filter: {nik:nik},
+                },{ headers: {"api-key": API_KEY}});
+            
+                getData()
+
+        }catch(err){
+            console.log(err)
+        }
     }
 
     React.useEffect(()=>{
